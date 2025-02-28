@@ -23,6 +23,11 @@ public class TaskManager {
         managerCount++;
     }
 
+    // Метод для генерации id
+    public int generateId() {
+        return nextId++;
+    }
+
     //------------------------------------------------------
 
     // Методы для обычных задач
@@ -43,15 +48,10 @@ public class TaskManager {
         task.setId(id);
         tasks.put(id, task);
     }
-
-    public void updateTask(final Task updTask, final TaskStatus updStatus, final int oldTaskId) {
-        if (tasks.containsKey(oldTaskId)) {
-            Task oldTask = tasks.get(oldTaskId);
-            updTask.setStatus(updStatus);
-            updTask.setId(oldTaskId);
-            tasks.put(updTask.getId(), updTask);
-        } else {
-            createTask(updTask);
+    public void updateTask(final Task updTask) {
+        int id = updTask.getId();
+        if (tasks.containsKey(id)) {
+            tasks.put(id, updTask);
         }
     }
 
