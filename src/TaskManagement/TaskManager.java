@@ -171,10 +171,10 @@ public class TaskManager {
         }
     }
 
-    public void updateSubtask(final Subtask updSubtask, final TaskStatus status, final int oldSubtaskId) {
-        if (subtasks.containsKey(oldSubtaskId)) {
-            updSubtask.setStatus(status);
-            updSubtask.setId(oldSubtaskId);
+    public void updateSubtask(final Subtask updSubtask) {
+        int subId = updSubtask.getId();
+        int epicId = updSubtask.getEpicId();
+        if (epics.containsKey(epicId) && subtasks.containsKey(subId)) {
             subtasks.put(updSubtask.getId(), updSubtask);
             // Обновление статуса родительского эпика
             EpicTask epic = epics.get(updSubtask.getEpicId());
