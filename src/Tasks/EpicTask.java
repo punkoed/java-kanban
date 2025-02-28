@@ -15,7 +15,7 @@ public final class EpicTask extends Task {
     // геттеры и сеттеры
 
     public ArrayList<Integer> getSubtaskIds() {
-        return subTaskIds;
+        return new ArrayList<>(subTaskIds);
     }
 
     // взаимодействия со списком id подзадач
