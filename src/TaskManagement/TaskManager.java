@@ -86,12 +86,12 @@ public class TaskManager {
         epics.put(id, epic);
     }
 
-    public void updateEpic(EpicTask updEpic, int oldEpicId) {
-        if (epics.containsKey(oldEpicId)) {
-            updEpic.setId(oldEpicId);
-            epics.put(updEpic.getId(), updEpic);
-        } else {
-            createEpic(updEpic);
+    public void updateEpic(final EpicTask updEpic) {
+        int id = updEpic.getId();
+        if (epics.containsKey(id)) {
+            EpicTask oldEpic = epics.get(id);
+            oldEpic.setTitle(updEpic.getTitle());
+            oldEpic.setDescription((updEpic.getDescription()));
         }
     }
 
