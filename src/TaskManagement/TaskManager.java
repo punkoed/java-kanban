@@ -162,7 +162,7 @@ public class TaskManager {
     public void createSubtask(Subtask subtask) {
         int epicId = subtask.getEpicId();
         EpicTask epic = epics.get(epicId);
-        if (!(epic == null)) {
+        if (epic != null) {
             int id = generateId();
             subtask.setId(id);
             subtasks.put(id, subtask);
