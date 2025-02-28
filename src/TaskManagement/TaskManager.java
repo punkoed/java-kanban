@@ -82,7 +82,7 @@ public class TaskManager {
     public void createEpic(EpicTask epic) {
         int id = generateId();
         epic.setId(id);
-        epic.getSubtaskIds().clear();
+        epic.clearSubTaskIds();
         epics.put(id, epic);
     }
 
