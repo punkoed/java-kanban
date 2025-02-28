@@ -27,6 +27,10 @@ public final class EpicTask extends Task {
         subTaskIds.remove(subTaskId);
     }
 
+    public void clearSubTaskIds() {
+        subTaskIds.clear();
+    }
+
     // Override
     @Override
     public String toString() {
