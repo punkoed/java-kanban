@@ -199,7 +199,7 @@ public class TaskManager {
         ArrayList<Subtask> result = new ArrayList<>();
         if (epic != null) {
             for (Integer subId : epic.getSubtaskIds()) {
-                Subtask subtask = getSubtaskById(subId);
+                Subtask subtask = subtasks.get(subId);
                 if (subtask != null)
                     result.add(subtask);
             }
