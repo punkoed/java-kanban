@@ -7,7 +7,7 @@ public class Main {
         TaskManager manager = new TaskManager();
 
         // Создание обычной задачи
-        Task task1 = new Task("Переезд", "Переезд в новую квартиру");
+        Task task1 = new Task("Переезд", "Переезд в новую квартиру", TaskStatus.NEW);
         manager.createTask(task1);
 
         // Создание эпика
@@ -15,9 +15,9 @@ public class Main {
         manager.createEpic(epic1);
 
         // Создание подзадач
-        Subtask subTask1 = new Subtask("Покраска стен", "Выбрать цвет и покрасить", epic1.getId());
+        Subtask subTask1 = new Subtask("Покраска стен", "Выбрать цвет и покрасить", TaskStatus.NEW, epic1.getId());
         manager.createSubtask(subTask1);
-        Subtask subTask2 = new Subtask("Укладка плитки", "Укладка новой плитки", epic1.getId());
+        Subtask subTask2 = new Subtask("Укладка плитки", "Укладка новой плитки", TaskStatus.NEW, epic1.getId());
         manager.createSubtask(subTask2);
 
         System.out.println("Все обычные задачи:");
@@ -34,24 +34,25 @@ public class Main {
         }
 
         // Обновляем первую подзадачу
-        manager.updateSubtask(subTask1, TaskStatus.DONE, subTask2.getId());
 
-        System.out.println("\nВсе подзадачи после апдейта:");
-        for (Subtask subtask : manager.getAllSubtasks()) {
-            System.out.println(subtask);
-        }
+        subTask1.setDescription("Покрасить");
+        subTask1.setStatus(TaskStatus.IN_PROGRESS);
+        manager.updateSubtask(subTask1);
 
         System.out.println("\nПосле обновления подзадачи:");
         for (EpicTask epicTask : manager.getAllEpics()) {
             System.out.println(epicTask);
         }
 
-        EpicTask epic2 = new EpicTask("Ремонт", "Капитальный ремонт офиса");
-        manager.updateEpic(epic2, epic1.getId());
+        // Обновляем эпик
 
-        System.out.println("\nПосле обновления подзадачи:");
-        for (EpicTask epic : manager.getAllEpics()) {
-            System.out.println(epic);
+        epic1.setTitle("Ремонт!!!!");
+        epic1.setDescription("Капитальный ремонт кухни");
+        manager.updateEpic(epic1);
+
+        System.out.println("\nПосле обновления эпика:");
+        for (EpicTask epicTask : manager.getAllEpics()) {
+            System.out.println(epicTask);
         }
     }
 }

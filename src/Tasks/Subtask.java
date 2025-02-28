@@ -9,9 +9,7 @@ public final class Subtask extends Task {
     public Subtask(String title, String description, TaskStatus status, int epicId) {
         super(title, description, status);
 
-        this.status = TaskStatus.NEW;
         this.epicId = epicId;
-
     }
 
     // геттеры и сеттеры

@@ -5,10 +5,8 @@ import Tasks.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static TaskManagement.IdGenerator.generateId;
-
 public class TaskManager {
-    private static int managerCount = 0;
+    private int nextId = 0;
 
     protected final HashMap<Integer, Task> tasks;
     protected final HashMap<Integer, EpicTask> epics;
@@ -20,7 +18,6 @@ public class TaskManager {
         epics = new HashMap<>();
         subtasks = new HashMap<>();
 
-        managerCount++;
     }
 
     // Метод для генерации id
@@ -43,7 +40,7 @@ public class TaskManager {
         return tasks.get(id);
     }
 
-    public void createTask(Task task) {
+    public void createTask(final Task task) {
         int id = generateId();
         task.setId(id);
         tasks.put(id, task);
@@ -79,7 +76,7 @@ public class TaskManager {
         return epics.get(id);
     }
 
-    public void createEpic(EpicTask epic) {
+    public void createEpic(final EpicTask epic) {
         int id = generateId();
         epic.setId(id);
         epic.clearSubTaskIds();
@@ -109,7 +106,7 @@ public class TaskManager {
     // Если подзадач нет или все имеют статус NEW = NEW;
     // Если все подзадачи DONE = DONE;
     // Иначе = IN_PROGRESS.
-    private void updateEpicStatus(EpicTask epic) {
+    private void updateEpicStatus(final EpicTask epic) {
         ArrayList<Integer> subIds = epic.getSubtaskIds();
         if (subIds.isEmpty()) {
             epic.setStatus(TaskStatus.NEW);
@@ -159,7 +156,7 @@ public class TaskManager {
         return subtasks.get(id);
     }
 
-    public void createSubtask(Subtask subtask) {
+    public void createSubtask(final Subtask subtask) {
         int epicId = subtask.getEpicId();
         EpicTask epic = epics.get(epicId);
         if (epic != null) {
