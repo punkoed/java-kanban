@@ -21,7 +21,7 @@ public class TaskManager {
     }
 
     // Метод для генерации id
-    public int generateId() {
+    private int generateId() {
         return nextId++;
     }
 
