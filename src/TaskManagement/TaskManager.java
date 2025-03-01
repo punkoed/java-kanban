@@ -175,8 +175,7 @@ public class TaskManager {
             subtasks.put(updSubtask.getId(), updSubtask);
             // Обновление статуса родительского эпика
             EpicTask epic = epics.get(updSubtask.getEpicId());
-            if (epic != null)
-                updateEpicStatus(epic);
+            updateEpicStatus(epic);
         }
     }
 
