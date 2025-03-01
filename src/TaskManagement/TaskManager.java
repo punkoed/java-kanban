@@ -171,7 +171,11 @@ public class TaskManager {
     public void updateSubtask(final Subtask updSubtask) {
         int subId = updSubtask.getId();
         int epicId = updSubtask.getEpicId();
-        if (epics.containsKey(epicId) && subtasks.containsKey(subId)) {
+        // Просто проверить существование эпика - мало, так как может быть
+        // другой эпик. Нужно проверить, совпадает ли ЭпикИд от этого сабтаска с ЭпикИд
+        // сабтаска из списка сабтасков
+        if (subtasks.containsKey(subId)
+                && (subtasks.get(subId).getEpicId() == epicId)) {
             subtasks.put(updSubtask.getId(), updSubtask);
             // Обновление статуса родительского эпика
             EpicTask epic = epics.get(updSubtask.getEpicId());
