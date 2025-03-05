@@ -36,7 +36,7 @@ public class InMemoryTaskManager implements TaskManager {
         // которое в него изначально передали. Для этого создаю новую переменную.
         Task newTask = new Task(task.getTitle(), task.getDescription(), task.getStatus());
 
-        history.addLast(task);
+        history.addLast(newTask);
         if (history.size() > MAX_HISTORY_SIZE) {
             history.removeFirst();
         }
