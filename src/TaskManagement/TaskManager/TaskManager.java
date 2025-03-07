@@ -8,12 +8,10 @@ public interface TaskManager {
 
     // Методы для работы с историей
 
-    void addToHistory(Task task);
-
     List<Task> getHistory();
 
     // Методы для обычных задач
-    ArrayList<Task> getAllTasks();
+    List<Task> getAllTasks();
 
     void deleteAllTasks();
 
@@ -26,7 +24,7 @@ public interface TaskManager {
     void deleteTaskById(int id);
 
     // Методы для эпиков
-    ArrayList<EpicTask> getAllEpics();
+    List<EpicTask> getAllEpics();
 
     void deleteAllEpics();
 
@@ -39,7 +37,7 @@ public interface TaskManager {
     void deleteEpicById(int id);
 
     // Методы для подзадач
-    ArrayList<Subtask> getAllSubtasks();
+    List<Subtask> getAllSubtasks();
 
     void deleteAllSubtasks();
 
@@ -51,5 +49,5 @@ public interface TaskManager {
 
     void deleteSubtaskById(int id);
 
-    ArrayList<Subtask> getSubtasksOfEpic(int epicId);
+    List<Subtask> getSubtasksOfEpic(int epicId);
 }

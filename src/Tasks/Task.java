@@ -14,7 +14,13 @@ public class Task {
         this.title = title;
         this.description = description;
         this.status = status;
+    }
 
+    public Task(Task other) {
+        this.title = other.title;
+        this.description = other.description;
+        this.status = other.status;
+        this.id = other.id;
     }
 
     // геттеры и сеттеры

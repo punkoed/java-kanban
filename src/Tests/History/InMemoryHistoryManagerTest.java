@@ -8,7 +8,7 @@ import TaskStatus.TaskStatus;
 import Tasks.Task;
 import org.junit.jupiter.api.Test;
 
-
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InMemoryHistoryManagerTest {
@@ -62,6 +62,7 @@ public class InMemoryHistoryManagerTest {
         String modifiedDesc = task.getDescription();
 
         // Можно проверить по состоянию одного из полей класса
-        assertEquals(initialDesc, modifiedDesc, "История должна хранить исходное состояние задачи.");
+        // Поля не должны быть равны!
+        assertNotEquals(initialDesc, modifiedDesc, "История должна хранить исходное состояние задачи.");
     }
 }

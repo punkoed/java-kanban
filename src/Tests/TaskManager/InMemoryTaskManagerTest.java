@@ -3,10 +3,12 @@ package Tests.TaskManager;
 import TaskManagement.Managers;
 import TaskManagement.TaskManager.TaskManager;
 import TaskStatus.TaskStatus;
-import Tasks.*;
+import Tasks.EpicTask;
+import Tasks.Subtask;
+import Tasks.Task;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class InMemoryTaskManagerTest {
 

@@ -5,12 +5,11 @@ import TaskManagement.Managers;
 import TaskStatus.TaskStatus;
 import Tasks.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.HashMap;
+import java.util.List;
 
 public class InMemoryTaskManager implements TaskManager {
-    private int nextId = 0;
-    private final static byte MAX_HISTORY_SIZE = 10;
+    private int nextId = 1; // начинаем нумерацию с 1
 
     private final HashMap<Integer, Task> tasks;
     private final HashMap<Integer, EpicTask> epics;
@@ -26,22 +25,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     // Методы для работы с историей
-    public void addToHistory(final Task task) {
-        if (task == null) return;
-
-        LinkedList<Task> history = historyManager.getHistory();
-        history.remove(task); // убираем дубликат
-        // Если передать просто task, то history будет хранить ссылку на него => при изменении состояния task
-        // изменится и его состояние в history, а такого быть не должно. History должна хранить то состояние,
-        // которое в него изначально передали. Для этого создаю новую переменную.
-        Task newTask = new Task(task.getTitle(), task.getDescription(), task.getStatus());
-
-        history.addLast(newTask);
-        if (history.size() > MAX_HISTORY_SIZE) {
-            history.removeFirst();
-        }
-    }
-    public LinkedList<Task> getHistory() {
+    public List<Task> getHistory() {
         return historyManager.getHistory();
     }
 
@@ -68,7 +52,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Task getTaskById(final int id) {
         Task targetTask = tasks.get(id);
-        addToHistory(targetTask);
+        historyManager.add(targetTask);
         return targetTask;
     }
 
@@ -114,7 +98,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public EpicTask getEpicById(final int id) {
         EpicTask targetEpic = epics.get(id);
-        addToHistory(targetEpic);
+        historyManager.add(targetEpic);
         return targetEpic;
     }
 
@@ -205,7 +189,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Subtask getSubtaskById(final int id) {
         Subtask targetSubtask = subtasks.get(id);
-        addToHistory(targetSubtask);
+        historyManager.add(targetSubtask);
         return targetSubtask;
     }
 
